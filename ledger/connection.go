@@ -44,3 +44,5 @@ func (connection *Connection) GetBlock(id uint) (PSL.Block, error) {
   if err != nil { return PSL.NewBlock(), err }
   return PSL.BlockFromCBOR(cborBytes)
 }
+
+func (connection *Connection) LoadBlocksFromDrive(){}
