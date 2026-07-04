@@ -11,8 +11,8 @@ type Snapshot struct {
   Context    PSL.Context                `cbor: "context"`
   Requests   map[string]PSL.Request     `cbor: "requests"`
   Certs      map[string]PSL.Certificate `cbor: "certificates"`
-  Validators []PSL.Validator            `cbor: "validators"`
-  Accounts   map[string]PSL.Account     `cbor: "accounts"`
+  Validators []Validator                `cbor: "validators"`
+  Accounts   map[string]Account         `cbor: "accounts"`
 }
 
 func NewSnapshot() Snapshot {
@@ -20,8 +20,8 @@ func NewSnapshot() Snapshot {
     Context: PSL.NewContext(),
     Requests: make(map[string]PSL.Request),
     Certs: make(map[string]PSL.Certificate),
-    Validators: make([]PSL.Validator, 0),
-    Accounts: make(map[string]PSL.Account),
+    Validators: make([]Validator, 0),
+    Accounts: make(map[string]Account),
   }
 }
 
