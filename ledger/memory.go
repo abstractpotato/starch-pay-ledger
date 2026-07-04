@@ -43,7 +43,7 @@ func (memory *Memory) HasBlock(id uint) bool {
   return ok
 }
 
-func (memory *Memory) GetTx(hash string) (PSL.Transaction) {
+func (memory *Memory) GetTx(hash string) PSL.Transaction {
   memory.Lock()
   defer memory.Unlock()
   return memory.Transactions[hash]

@@ -1,5 +1,11 @@
 package ledger
 
+import (
+  PSL "github.com/abstractpotato/potato-serialization-lib/psl"
+  "path/filepath"
+)
+
+
 type Connection struct {
   Disk   Disk
   Memory Memory
@@ -16,8 +22,14 @@ func (connection *Connection) SetUp() {
   connection.Disk.CreatedDirectories()
 }
 
-func GetTransaction() {
-  // look in memory
-  // if not found look in disk
-  // load transaction into memory
+func (connection *Connection) GetTx(hash string) (PSL.Transaction, error) {
+  if connection.Memory.HasTx(hash) {
+    return connection.Memory.GetTx(hash)
+  }
+  filePath := filepath.Join("immutable/transactions/", hash)
+  cborBytes, err := Disk.Read(filePath)
+  if err != nil { PSL.Transaction{}, err }
+  return PSL.TransactionFromCBOR(cborBytes)
 }
+
+// func (connection *Connection) GetBlock(id uint) (PSL.Block, error) {}
