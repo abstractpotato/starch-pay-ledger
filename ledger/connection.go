@@ -6,7 +6,6 @@ import (
   "strconv"
 )
 
-
 type Connection struct {
   Disk   Disk
   Memory Memory
