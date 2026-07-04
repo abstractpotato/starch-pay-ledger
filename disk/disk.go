@@ -21,7 +21,6 @@ func (disk *Disk) CreatedDirs() {
     makeDir(TRANSACTIONS)
     makeDir(ACCOUNTS)
     makeDir(SNAPSHOTS)
-
 }
 
 func makeDir(location string) error {

@@ -9,7 +9,7 @@ import (
 
 type Snapshot struct {
   Context    PSL.Context                `cbor: "context"`
-  Requests   map[strimg]PSL.Request     `cbor: "requests"`
+  Requests   map[string]PSL.Request     `cbor: "requests"`
   Certs      map[string]PSL.Certificate `cbor: "certificates"`
   Validators []PSL.Validator            `cbor: "validators"`
   Accounts   map[string]PSL.Account     `cbor: "accounts"`
@@ -20,7 +20,7 @@ func NewSnapshot() Snapshot {
     Context: PSL.NewContext(),
     Requests: make(map[string]PSL.Request),
     Certs: make(map[string]PSL.Certificate),
-    Validators: make(map[string]PSL.Validator),
+    Validators: make([]PSL.Validator, 0),
     Accounts: make(map[string]PSL.Account),
   }
 }
