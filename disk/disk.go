@@ -6,7 +6,7 @@ import (
 )
 
 type Disk struct {
-  mu      sync.Mutex
+  mu sync.Mutex
 }
 
 func NewDisk() Disk {
