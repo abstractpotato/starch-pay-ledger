@@ -7,7 +7,8 @@ import(
 )
 
 type Account struct {
-  Addr string            `cbor: "addr"`
+  Addr   string          `cbor: "addr"`
+  Key    []byte          `cbor: "key"`
   Assets map[string]uint `cbor: "assets"`
 }
 
