@@ -8,10 +8,10 @@ import (
 )
 
 type Snapshot struct {
-  Context    PSL.Context                `cbor: "context"`
+  Context    Context                    `cbor: "context"`
   Requests   map[string]PSL.Request     `cbor: "requests"`
   Certs      map[string]PSL.Certificate `cbor: "certificates"`
-  Validators []Validator                `cbor: "validators"`
+  Validators []PSL.Validator            `cbor: "validators"`
   Accounts   map[string]Account         `cbor: "accounts"`
 }
 
