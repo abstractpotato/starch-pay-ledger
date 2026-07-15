@@ -7,10 +7,10 @@ import(
 )
 
 type Context struct {
-  Params Params `cbor: "protocolParams"`
-  Epoch  uint   `cbor: "currentEpoch"`
-  Slot   uint   `cbor: "currentSlot"`
-  Tip    uint   `cbor: "tip"`
+  Params Params `cbor:"0,keyasint" json:"params"`
+  Epoch  uint   `cbor:"1,keyasint" json:"epoch"`
+  Slot   uint   `cbor:"2,keyasint" json:"slot"`
+  Tip    uint   `cbor:"3,keyasint" json:"tip"`
 }
 
 func NewContext() Context {

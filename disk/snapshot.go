@@ -8,11 +8,10 @@ import (
 )
 
 type Snapshot struct {
-  Context    Context                    `cbor: "context"`
-  Requests   map[string]PSL.Request     `cbor: "requests"`
-  Certs      map[string]PSL.Certificate `cbor: "certificates"`
-  Validators []PSL.Validator            `cbor: "validators"`
-  Accounts   map[string]Account         `cbor: "accounts"`
+  Context    Context                    `cbor:"0,keyasint" json:"context"`
+  Requests   map[string]PSL.Request     `cbor:"1,keyasint,toarray" json:"requests"`
+  Certs      map[string]PSL.Certificate `cbor:"2,keyasint,toarray" json:"certificates"`
+  Accounts   map[string]Account         `cbor:"3,keyasint,toarray" json:"accounts"`
 }
 
 func NewSnapshot() Snapshot {
