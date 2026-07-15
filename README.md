@@ -1,5 +1,6 @@
 # Starch Pay Ledger
-This library manages storage and retrieval of data structs for StarchPay
+This library manages and stores StarchPay's Blockchain State
+
 
 Add to Go project
 ```
