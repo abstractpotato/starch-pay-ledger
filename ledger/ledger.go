@@ -9,11 +9,12 @@ import (
 
 type Ledger struct {
   Tip          uint              `cbor:"0,keyasint" json:"tip"`
-  Genesis      PSL.Genesis       `cbor:"1,keyasint" json:"genesis"`
-  Params       PSL.Params        `cbor:"2,keyasint" json:"params"`
-  Requests     []PSL.Request     `cbor:"3,keyasint" json:"requests"`
-  Certificates []PSL.Certificate `cbor:"4,keyasint" json:"certificates"`
-  Mempool      Mempool           `cbor:"5,keyasint" json:"mempool"`
+  InitTime     uint              `cbor:"1,keyasint" json:"initTime"`
+  Genesis      *PSL.Genesis      `cbor:"2,keyasint" json:"genesis"`
+  Params       *PSL.Params       `cbor:"3,keyasint" json:"params"`
+  Requests     []PSL.Request     `cbor:"4,keyasint" json:"requests"`
+  Certificates []PSL.Certificate `cbor:"5,keyasint" json:"certificates"`
+  Mempool      Mempool           `cbor:"6,keyasint" json:"mempool"`
 }
 
 func NewLedger() Ledger {
@@ -55,4 +56,13 @@ func (ledger *Ledger) ToJSON() ([]byte, error) {
   jsonBytes, err := json.Marshal(ledger)
   if err != nil { return nil, err }
   return jsonBytes, nil
+}
+
+
+func (ledger *Ledger) AddRequest(request PSL.Request) {
+  ledger.Requests = append(ledger.Requests, request)
+}
+
+func (ledger *Ledger) AddCertificate(certificate PSL.Certificate) {
+  ledger.Certificates = append(ledger.Certificates, certificate)
 }
