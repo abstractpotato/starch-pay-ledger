@@ -27,7 +27,7 @@ func main() {
   txBuilder.Build()
   txHash := txBuilder.Tx.Header.Hash
 
-  fmt.Printf("%+v\n\n", txBuilder.Tx)
+  fmt.Printf("save: %+v\n\n", txBuilder.Tx)
 
   txCBOR, err := txBuilder.Tx.ToCBOR()
   if err != nil { panic(err) }
@@ -42,5 +42,5 @@ func main() {
   tx, err := PSL.TransactionFromCBOR(txCBOR)
   if err != nil { panic(err) }
 
-  fmt.Printf("%+v\n", tx)
+  fmt.Printf("load: %+v\n", tx)
 }
