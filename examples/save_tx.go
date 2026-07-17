@@ -1,6 +1,8 @@
 package main
 
 import (
+  "fmt"
+  PSL "github.com/abstractpotato/potato-serialization-lib/psl"
   Builders "github.com/abstractpotato/potato-serialization-lib/builders"
   Ledger   "github.com/abstractpotato/starch-pay-ledger/ledger"
 )
@@ -23,9 +25,22 @@ func main() {
 
   txBuilder.AddSimpleOutput(output)
   txBuilder.Build()
+  txHash := txBuilder.Tx.Header.Hash
+
+  fmt.Printf("%+v\n\n", txBuilder.Tx)
 
   txCBOR, err := txBuilder.Tx.ToCBOR()
   if err != nil { panic(err) }
 
-  Ledger.SaveTxCBOR()
+  disk := Ledger.NewDisk()
+  disk.CreatedDirs()
+  disk.SaveTxCBOR(txHash, txCBOR)
+
+  txCBOR, err = disk.GetTxCBOR(txHash)
+  if err != nil { panic(err) }
+
+  tx, err := PSL.TransactionFromCBOR(txCBOR)
+  if err != nil { panic(err) }
+
+  fmt.Printf("%+v\n", tx)
 }
