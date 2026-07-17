@@ -87,20 +87,6 @@ func (disk *Disk) DeleteTx(hash string) error {
   return disk.Delete(FormatTxPath(hash))
 }
 
-// SNAPSHOTS ===================================================================
-
-func (disk *Disk) SaveSnapshotCBOR(id uint, cborBytes []byte) error {
-  return disk.Write(FormatSnapshotPath(id), cborBytes)
-}
-
-func (disk *Disk) GetSnapshotCBOR(id uint) ([]byte, error) {
-  return disk.Read(FormatSnapshotPath(id))
-}
-
-func (disk *Disk) DeleteSnapshot(id uint) error {
-  return disk.Delete(FormatSnapshotPath(id))
-}
-
 // ACCOUNTS ====================================================================
 
 func (disk *Disk) SaveAccountCBOR(addr string, cborBytes []byte) error {
@@ -113,4 +99,18 @@ func (disk *Disk) GetAccountCBOR(addr string) ([]byte, error) {
 
 func (disk *Disk) DeleteAccount(addr string) error {
   return disk.Delete(FormatAccountPath(addr))
+}
+
+// SNAPSHOTS ===================================================================
+
+func (disk *Disk) SaveSnapshotCBOR(id uint, cborBytes []byte) error {
+  return disk.Write(FormatSnapshotPath(id), cborBytes)
+}
+
+func (disk *Disk) GetSnapshotCBOR(id uint) ([]byte, error) {
+  return disk.Read(FormatSnapshotPath(id))
+}
+
+func (disk *Disk) DeleteSnapshot(id uint) error {
+  return disk.Delete(FormatSnapshotPath(id))
 }
