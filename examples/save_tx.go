@@ -42,5 +42,11 @@ func main() {
   tx, err := PSL.TransactionFromCBOR(txCBOR)
   if err != nil { panic(err) }
 
+  // passed if loads the same hash
+  tx.Hash()
+
   fmt.Printf("load: %+v\n", tx)
+
+  // deletes transaction
+  disk.DeleteTx(txHash)
 }
