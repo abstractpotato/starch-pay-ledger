@@ -9,7 +9,7 @@ go get github.com/abstractpotato/starch-pay-ledger
 
 In Go code
 ```go
-import Ledger "github.com/starch-pay-ledger/disk"
+import Ledger "github.com/starch-pay-ledger"
 ```
 
 ## Core maintainers:
