@@ -1,7 +1,6 @@
 # Starch Pay Ledger
 This library manages and stores StarchPay's Blockchain State
 
-
 Add to Go project
 ```
 go get github.com/abstractpotato/starch-pay-ledger
