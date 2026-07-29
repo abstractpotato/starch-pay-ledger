@@ -1,7 +1,7 @@
 package ledger
 
 import (
-  PSL "github.com/abstractpotato/potato-serialization-lib/psl"
+  "github.com/abstractpotato/potato-serialization-lib"
   "github.com/fxamacker/cbor/v2"
   "encoding/hex"
   "encoding/json"
@@ -10,17 +10,17 @@ import (
 type Ledger struct {
   Tip          uint              `cbor:"0,keyasint" json:"tip"`
   InitTime     uint              `cbor:"1,keyasint" json:"initTime"`
-  Genesis      *PSL.Genesis      `cbor:"2,keyasint" json:"genesis"`
-  Params       *PSL.Params       `cbor:"3,keyasint" json:"params"`
-  Requests     []PSL.Request     `cbor:"4,keyasint" json:"requests"`
-  Certificates []PSL.Certificate `cbor:"5,keyasint" json:"certificates"`
+  Genesis      *psl.Genesis      `cbor:"2,keyasint" json:"genesis"`
+  Params       *psl.Params       `cbor:"3,keyasint" json:"params"`
+  Requests     []psl.Request     `cbor:"4,keyasint" json:"requests"`
+  Certificates []psl.Certificate `cbor:"5,keyasint" json:"certificates"`
   Mempool      Mempool           `cbor:"6,keyasint" json:"mempool"`
 }
 
 func NewLedger() Ledger {
   return Ledger{
-    Requests: make([]PSL.Request, 0),
-    Certificates: make([]PSL.Certificate, 0),
+    Requests: make([]psl.Request, 0),
+    Certificates: make([]psl.Certificate, 0),
     Mempool: NewMempool(),
   }
 }
@@ -59,10 +59,10 @@ func (ledger *Ledger) ToJSON() ([]byte, error) {
 }
 
 
-func (ledger *Ledger) AddRequest(request PSL.Request) {
+func (ledger *Ledger) AddRequest(request psl.Request) {
   ledger.Requests = append(ledger.Requests, request)
 }
 
-func (ledger *Ledger) AddCertificate(certificate PSL.Certificate) {
+func (ledger *Ledger) AddCertificate(certificate psl.Certificate) {
   ledger.Certificates = append(ledger.Certificates, certificate)
 }

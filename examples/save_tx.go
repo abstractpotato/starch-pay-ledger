@@ -3,7 +3,7 @@ package main
 import (
   "fmt"
   "github.com/abstractpotato/potato-serialization-lib"
-  "github.com/abstractpotato/starch-pay-ledger/ledger"
+  "github.com/abstractpotato/starch-pay-ledger"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
   txCBOR, err := txBuilder.Tx.ToCBOR()
   if err != nil { panic(err) }
 
-  disk := Ledger.NewDisk()
+  disk := ledger.NewDisk()
   disk.CreatedDirs()
   disk.SaveTxCBOR(txHash, txCBOR)
 

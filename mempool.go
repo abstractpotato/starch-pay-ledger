@@ -3,17 +3,17 @@ package ledger
 import (
   "sync"
   "sort"
-  PSL "github.com/abstractpotato/potato-serialization-lib/psl"
+  "github.com/abstractpotato/potato-serialization-lib"
 )
 
 type Mempool struct {
   mu           sync.Mutex
-  Transactions map[string]PSL.Transaction
+  Transactions map[string]psl.Transaction
 }
 
 func NewMempool() Mempool {
   return Mempool{
-    Transactions: make(map[string]PSL.Transaction),
+    Transactions: make(map[string]psl.Transaction),
   }
 }
 
@@ -38,7 +38,7 @@ func (mempool *Mempool) HasTx(hash string) bool {
   return ok
 }
 
-func (mempool *Mempool) Add(tx *PSL.Transaction) {
+func (mempool *Mempool) Add(tx *psl.Transaction) {
   mempool.Lock()
   defer mempool.Unlock()
   _, ok := mempool.Transactions[tx.Header.Hash]
@@ -56,14 +56,14 @@ func (mempool *Mempool) Del(hash string) {
 func (mempool *Mempool) Clear() {
   mempool.Lock()
   defer mempool.Unlock()
-  mempool.Transactions = make(map[string]PSL.Transaction)
+  mempool.Transactions = make(map[string]psl.Transaction)
 }
 
-func (mempool *Mempool) GetSorted() []PSL.Transaction {
+func (mempool *Mempool) GetSorted() []psl.Transaction {
   mempool.Lock()
   defer mempool.Unlock()
 
-  mempoolSlice := make([]PSL.Transaction, 0)
+  mempoolSlice := make([]psl.Transaction, 0)
   for _, mtx := range mempool.Transactions {
     mempoolSlice = append(mempoolSlice, mtx)
   }
