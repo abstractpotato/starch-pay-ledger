@@ -1,17 +1,12 @@
 package ledger
 
 import (
-  "sync"
   "os"
 )
 
-type Disk struct {
-  mu sync.Mutex
-}
+type Disk struct {}
 
-func NewDisk() Disk {
-  return Disk{}
-}
+func NewDisk() Disk { return Disk{} }
 
 func (disk *Disk) CreatedDirs() {
     makeDir("storage")
@@ -27,23 +22,11 @@ func makeDir(location string) error {
   return os.Mkdir(location, 0755)
 }
 
-func (disk *Disk) Lock() {
-  disk.mu.Lock()
-}
-
-func (disk *Disk) Unlock() {
-  disk.mu.Unlock()
-}
-
 func (disk *Disk) Delete(filePath string) error {
-  disk.Lock()
-  defer disk.Unlock()
   return os.Remove(filePath)
 }
 
 func (disk *Disk) Write(filePath string, cborBytes []byte) error {
-  disk.Lock()
-  defer disk.Unlock()
   file, err := os.Create(filePath)
   defer file.Close()
   if err != nil { return err }
@@ -52,8 +35,6 @@ func (disk *Disk) Write(filePath string, cborBytes []byte) error {
 }
 
 func (disk *Disk) Read(filePath string) ([]byte, error) {
-  disk.Lock()
-  defer disk.Unlock()
   file, err := os.ReadFile(filePath)
   if err != nil { return nil, err }
   return file, nil
