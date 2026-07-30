@@ -11,5 +11,10 @@ In Go code
 import Ledger "github.com/starch-pay-ledger"
 ```
 
+Run examples
+```
+go run examples/<example_name.go>
+```
+
 ## Core maintainers:
 [Abstract Potato](https://github.com/abstractpotato)
