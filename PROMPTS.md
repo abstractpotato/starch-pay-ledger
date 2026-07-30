@@ -1,6 +1,5 @@
 # Prompts
 
-
 ## LLM Security Check Helper
 ```
 Analyze this repo and report any potential security vulnerabilities.
