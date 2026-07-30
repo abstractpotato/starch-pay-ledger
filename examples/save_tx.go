@@ -6,7 +6,6 @@ import (
   "github.com/abstractpotato/starch-pay-ledger"
 )
 
-
 func GetPrivateKey() []byte {
   skey, err := psl.GenerateKeys("")
   if err != nil { panic(err) }
@@ -45,14 +44,14 @@ func main() {
   
   fmt.Printf("save:\n%s\n\n", txJSON)
   
-  // LOAD TX ===================================================================
   txCBOR, err := txBuilder.Tx.ToCBOR()
   if err != nil { panic(err) }
   
   disk := ledger.NewDisk()
   disk.CreatedDirs()
   disk.SaveTxCBOR(txHash, txCBOR)
-
+  
+  // LOAD TX ===================================================================
   txCBOR, err = disk.GetTxCBOR(txHash)
   if err != nil { panic(err) }
 

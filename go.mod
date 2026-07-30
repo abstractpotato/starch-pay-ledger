@@ -3,7 +3,7 @@ module github.com/abstractpotato/starch-pay-ledger
 go 1.24.0
 
 require (
-	github.com/abstractpotato/potato-serialization-lib v0.0.0-20260730133129-266745e0e11d
+	github.com/abstractpotato/potato-serialization-lib v0.0.0-20260730172529-2634f6733b2d
 	github.com/fxamacker/cbor/v2 v2.9.2
 )
 
