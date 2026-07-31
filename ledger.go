@@ -31,7 +31,7 @@ func NewLedger() Ledger {
 
 func (ledger *Ledger) AddGenesis(block psl.Block) {
   ledger.InitTime = block.Body.Timestamp
-  ledger.Genesis = *block.Body.Genesis
+  ledger.GenesisSeed = *block.Body.Genesis.Seed
   ledger.Params = block.Body.Genesis.Params
   ledger.AddCertificate(block.Body.Genesis.Certificate)
 }
