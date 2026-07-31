@@ -11,10 +11,7 @@ func main() {
 
   chain := ledger.NewLedger()
   valid_block := chain.ValidBlock(block)
-  fmt.Printf("%+v\n", valid_block)
-
-  valid_transactions := chain.ValidTransactions(block)
-  fmt.Printf("%+v\n", valid_transactions)
+  fmt.Printf("Valid Block: %v\n", valid_block)
 }
 
 func genesisBlock() psl.Block {

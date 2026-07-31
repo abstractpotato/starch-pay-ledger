@@ -1,6 +1,9 @@
 package ledger
 
-import "github.com/abstractpotato/potato-serialization-lib"
+import (
+  "math"
+  "github.com/abstractpotato/potato-serialization-lib"
+)
 
 type TempState struct {
   Block psl.Block
@@ -15,9 +18,9 @@ func NewTempState() TempState {
 
 func (state *TempState) ProcessTx(tx psl.Transaction) bool {
 
-  if !ProcessSimpleOutputs(tx) { return false }
-  if !ProcessMultiOutputs(tx) {return false }
-  return ProcessAirDropOutput(tx)
+  if !state.ProcessSimpleOutputs(tx) { return false }
+  if !state.ProcessMultiOutputs(tx) {return false }
+  return state.ProcessAirDropOutput(tx)
 }
 
 func (state *TempState) ProcessSimpleOutputs(tx psl.Transaction) bool {
@@ -46,19 +49,19 @@ func (state *TempState) ProcessMultiOutputs(tx psl.Transaction) bool {
 }
 
 func (state *TempState) ProcessAirDropOutput(tx psl.Transaction) bool {
-  if tx.AirDropOutput == nil { return true }
+  if tx.Body.AirDropOutput == nil { return true }
 
   //checks if Amount is divisible by To
-  if len(tx.AirDropOutput.To) == 0 { return false }
-  if uint(len(tx.AirDropOutput.To))%tx.AirDropOutput.Amount != 0 {return false}
+  if len(tx.Body.AirDropOutput.To) == 0 { return false }
+  if uint(len(tx.Body.AirDropOutput.To))%tx.Body.AirDropOutput.Amount != 0 {return false}
 
-  from := tx.AirDropOutput.From+tx.AirDropOutput.Asset
-  if !state.Withdrawal(from, tx.AirDropOutput.Amount)
+  from := tx.Body.AirDropOutput.From+tx.Body.AirDropOutput.Asset
+  if !state.Withdrawal(from, tx.Body.AirDropOutput.Amount) {return false }
 
-  amount := 0 // tx.AirDropOutput.Amount / uint(len(tx.AirDropOutput.To))
+  amount := tx.Body.AirDropOutput.Amount / uint(len(tx.Body.AirDropOutput.To))
 
-  for _, addr := range tx.AirDropOutput.To {
-    to := addr+tx.AirDropOutput.Asset
+  for _, addr := range tx.Body.AirDropOutput.To {
+    to := addr+tx.Body.AirDropOutput.Asset
     if !state.Deposit(to, amount) { return false }
   }
 
@@ -83,7 +86,7 @@ func (state *TempState) Withdrawal(account string, amount uint) bool{
 
 func (state *TempState) Deposit(account string, amount uint) bool {
   if !state.AccountExists(account) {
-    state.addAccount(account, amount)
+    state.AddAccount(account, amount)
     return true
   }
 

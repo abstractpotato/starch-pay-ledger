@@ -1,8 +1,6 @@
 package ledger
 
 import (
-  "math"
-  "errors"
   "github.com/abstractpotato/potato-serialization-lib"
 )
 
@@ -15,7 +13,7 @@ type Ledger struct {
   Params       psl.Params
   Requests     []psl.Request
   Certificates []psl.Certificate
-  Accounts     Accounts
+  Accounts     map[string]uint
   Mempool      Mempool
 }
 
@@ -23,7 +21,7 @@ func NewLedger() Ledger {
   return Ledger{
     Requests: make([]psl.Request, 0),
     Certificates: make([]psl.Certificate, 0),
-    Accounts: NewAccounts,
+    Accounts: make(map[string]uint),
     Mempool: NewMempool(),
     Disk: NewDisk(),
   }
@@ -31,7 +29,7 @@ func NewLedger() Ledger {
 
 func (ledger *Ledger) AddGenesis(block psl.Block) {
   ledger.InitTime = block.Body.Timestamp
-  ledger.GenesisSeed = *block.Body.Genesis.Seed
+  ledger.GenesisSeed = block.Body.Genesis.Seed
   ledger.Params = block.Body.Genesis.Params
   ledger.AddCertificate(block.Body.Genesis.Certificate)
 }

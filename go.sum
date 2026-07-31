@@ -1,9 +1,7 @@
 filippo.io/edwards25519 v1.2.0 h1:crnVqOiS4jqYleHd9vaKZ+HKtHfllngJIiOpNpoJsjo=
 filippo.io/edwards25519 v1.2.0/go.mod h1:xzAOLCNug/yB62zG1bQ8uziwrIqIuxhctzJT18Q77mc=
-github.com/abstractpotato/potato-serialization-lib v0.0.0-20260730133129-266745e0e11d h1:UqknRIDmdRBQ4ly/zUIU4eismzX623Mp4GXMeb50SfU=
-github.com/abstractpotato/potato-serialization-lib v0.0.0-20260730133129-266745e0e11d/go.mod h1:Hu4uitI1hpwzrquVUOveRArxgyPwnD7np6puGo/Xuu4=
-github.com/abstractpotato/potato-serialization-lib v0.0.0-20260730172529-2634f6733b2d h1:ET1i1GojY3N178YVReN/zcE2bdxGuscdBGZL+yGJ8zU=
-github.com/abstractpotato/potato-serialization-lib v0.0.0-20260730172529-2634f6733b2d/go.mod h1:Hu4uitI1hpwzrquVUOveRArxgyPwnD7np6puGo/Xuu4=
+github.com/abstractpotato/potato-serialization-lib v0.0.0-20260731220352-bb395791ecfd h1:ybvhFhhSX5uneGCxBgYzK51xctfgA6sd0SV0kogwiMg=
+github.com/abstractpotato/potato-serialization-lib v0.0.0-20260731220352-bb395791ecfd/go.mod h1:sUGfoZlwjjh+jk3P9ZpiA5K1D71eKGJEco2nTlxCCRU=
 github.com/echovl/cardano-go v0.1.14 h1:Q6hUGOpEQuiVGamkM2d1Lqdv+RjLC+7qsUMHRR5gNvM=
 github.com/echovl/cardano-go v0.1.14/go.mod h1:2zMMpu+nUN0GTsYwlsxBlYmLfxq+E9GFEmAnFlprT9U=
 github.com/echovl/ed25519 v0.2.0 h1:H7sxJEXwj9krUvIug2vk8z+l8Yo1qlJ79Ja8ZYNPDkY=
