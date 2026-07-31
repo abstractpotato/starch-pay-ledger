@@ -55,7 +55,7 @@ func (state *TempState) ProcessAirDropOutput(tx psl.Transaction) bool {
   from := tx.AirDropOutput.From+tx.AirDropOutput.Asset
   if !state.Withdrawal(from, tx.AirDropOutput.Amount)
 
-  amount := tx.AirDropOutput.Amount / uint(len(tx.AirDropOutput.To))
+  amount := 0 // tx.AirDropOutput.Amount / uint(len(tx.AirDropOutput.To))
 
   for _, addr := range tx.AirDropOutput.To {
     to := addr+tx.AirDropOutput.Asset
