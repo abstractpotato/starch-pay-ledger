@@ -40,7 +40,7 @@ func (ledger *Ledger) ValidBlock(block psl.Block) bool {
   return ledger.PreviousHash == block.Body.PreviousHash
 }
 
-func (ledger *Ledger) Update(TempState) {
+func (ledger *Ledger) Update(volitile Volitile) {
   // update ledger with TempState
 }
 
